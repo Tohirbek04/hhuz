@@ -91,4 +91,5 @@ pyvenv.cfg
 .venv
 pip-selfcheck.json
 db.sqlite3
+.idea
 
