@@ -21,3 +21,5 @@ class Vacancy(Model):
         PROJECT = 'project_work', 'Project Time'
 
     work_time = CharField(max_length=30, choices=WorkTime.choices)
+
+

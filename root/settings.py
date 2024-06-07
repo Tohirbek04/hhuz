@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django_ckeditor_5',
     'django_filters',
     'drf_yasg',
+    'rest_framework.authtoken'
 
 ]
 
@@ -110,14 +111,21 @@ AUTH_PASSWORD_VALIDATORS = [
 REST_FRAMEWORK = {
 
     'DEFAULT_AUTHENTICATION_CLASSES': (
-
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.TokenAuthentication'
     ),
 
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ]
 
+}
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379",
+        "KEY_PREFIX": "django"
+    }
 }
 
 # Internationalization
@@ -147,12 +155,15 @@ MEDIA_ROOT = os.path.join(BASE_DIR / 'media/')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'users.User'
 
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
-# EMAIL_HOST_USER =
-# EMAIL_HOST_PASSWORD =
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER='urunovsamariddin@gmail.com'
+EMAIL_HOST_PASSWORD='dsjxhcolhgqnqgyf'
+
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
 
 customColorPalette = [
         {
